@@ -16,21 +16,21 @@
 		  <thead>
 		    <tr>
 		      <th>Number</th>
-		      <th>State</th>          
+		      <th>State</th>
 		      <th>City</th>
 		      <th>Zipcode</th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		    {{#numbers}}       
+		    {{#numbers}} 
 		    <tr>
 		      <td>{{phone_number}}</td>
-		      <td>{{region}}</td>        
+		      <td>{{region}}</td>
 		      <td>{{rate_center}}</td>
-		      <td>{{postal_code}}</td>   
-		      <td>		      	
+		      <td>{{postal_code}}</td>
+		      <td>
 				<button class="btn btn-success btn-sm" data-toggle="modal" data-target="#mymodal" data-phonenumber={{phone_number}}>Choose</button>
-		      </td>  
+		      </td>
 		    </tr>
 		    {{/numbers}}
 		  </tbody>
@@ -50,7 +50,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelbtn">Cancel</button>
-        <button type="button" class="btn btn-primary" data-loading-text="Processing..." id="buybtn">Buy</button>     	
+        <button type="button" class="btn btn-primary" data-loading-text="Processing..." id="buybtn">Buy</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -66,27 +66,27 @@
 		var buybtn = modal.find('#buybtn');
 		var cancelbtn = modal.find('#cancelbtn');
 
-		buybtn.on('click', function(e) {						
+		buybtn.on('click', function(e) {
 			$.post('/private/number/create',{phoneNumber: phone_number})
-			.done(function(res, status) {						
+			.done(function(res, status) {
 				// modal.modal('hide');
 				if(res.reason === 999) {
 					//not enough credits
 					window.location.href = '/private/credits';
 				} else {
-					window.location.href = '/private/dashboard';	
+					window.location.href = '/private/dashboard';
 				}
 			})
-			.fail(function(xhr, textstatus, error) {				
-				modal.find('.modal-body strong').text(error);				
-				cancelbtn.prop('disabled', false);			
+			.fail(function(xhr, textstatus, error) {
+				modal.find('.modal-body strong').text(error);
+				cancelbtn.prop('disabled', false);
 			});
 
 			buybtn.prop('disabled', true);
 			cancelbtn.prop('disabled', true);
 		});
 
-		
+
 	});
 
 

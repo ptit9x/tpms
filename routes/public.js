@@ -3,7 +3,7 @@ var router = express.Router();
 var stormpath = require('express-stormpath');
 
 /* GET home page. */
-router.get('/', function(req, res) {		
+router.get('/', function(req, res) {	
 	res.render('home', {title: 'Virtual Phone Managment System', user: req.user});
 });
 
@@ -28,7 +28,7 @@ router.post('/forwardToEmail/:to', function(req, res, next) {
 	console.log('to is ' + to);
 
 	var body = req.body.Body;
-	
+
 	console.log('body is ' + body);
 
 	if(body) {
